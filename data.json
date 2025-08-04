@@ -1,0 +1,45 @@
+{
+  "users": {
+    "1150930976294318082": {
+      "id": "1150930976294318082",
+      "name": "vunnymane",
+      "goal": "Read 3 Juz",
+      "pledge": 10,
+      "registeredDate": "2025-08-02",
+      "active": true,
+      "paused": false,
+      "warned": false,
+      "totalDonations": 0,
+      "lastLogDate": "2025-08-02"
+    },
+    "382322667723816961": {
+      "id": "382322667723816961",
+      "name": "sakibfarooqui",
+      "goal": "Read 10 pages daily",
+      "pledge": 10,
+      "registeredDate": "2025-08-02",
+      "active": true,
+      "paused": false,
+      "warned": false,
+      "totalDonations": 0,
+      "lastLogDate": "2025-08-02"
+    }
+  },
+  "logs": {
+    "2025-08-02": {
+      "382322667723816961": {
+        "completed": true,
+        "type": "daily_log",
+        "notes": null,
+        "timestamp": "2025-08-02T23:37:43.180Z"
+      },
+      "1150930976294318082": {
+        "completed": true,
+        "type": "daily_log",
+        "notes": null,
+        "timestamp": "2025-08-02T23:42:36.511Z"
+      }
+    }
+  },
+  "admins": []
+}
