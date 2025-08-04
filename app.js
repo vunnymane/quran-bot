@@ -52,14 +52,17 @@ try {
 
 // Create a simple web server for Railway health checks
 const server = http.createServer((req, res) => {
+    console.log(`🌐 Health check request received`);
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Quran Bot is running!');
 });
 
 // Start the web server
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
     console.log(`🌐 Web server running on port ${PORT}`);
+}).on('error', (err) => {
+    console.error('❌ Web server error:', err);
 });
 
 // Ready event
