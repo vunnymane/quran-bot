@@ -2,6 +2,7 @@ const { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder
 const cron = require('node-cron');
 const fs = require('fs');
 const path = require('path');
+const http = require('http');
 
 // Import command handlers
 const registerCommand = require('./commands/register');
@@ -48,6 +49,18 @@ try {
 } catch (error) {
     console.log('⚠️ No existing data found, starting fresh');
 }
+
+// Create a simple web server for Railway health checks
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Quran Bot is running!');
+});
+
+// Start the web server
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`🌐 Web server running on port ${PORT}`);
+});
 
 // Ready event
 client.on('ready', () => {
@@ -349,6 +362,7 @@ process.on('SIGINT', async () => {
     console.log('\n🛑 Shutting down bot...');
     saveData(botData);
     await client.destroy();
+    server.close();
     process.exit(0);
 });
 
@@ -356,11 +370,13 @@ process.on('SIGINT', async () => {
 const token = process.env.DISCORD_TOKEN;
 if (!token) {
     console.error('❌ DISCORD_TOKEN environment variable is required!');
+    console.error('Please set the DISCORD_TOKEN environment variable in Railway.');
     process.exit(1);
 }
 console.log('🔑 Using Discord bot token from environment...');
 
 client.login(token).catch(error => {
     console.error('❌ Failed to login:', error);
+    console.error('Please check your Discord token and bot permissions.');
     process.exit(1);
 }); 
